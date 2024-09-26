@@ -1,35 +1,49 @@
-namespace week2 {
-public class MathOperations {
-    public static void CalculateProductWithOverflow() {
-        bool isValid = false;
-        while (!isValid) {
-            try {
-                        Console.WriteLine("Enter first number");
-        string firstString = Console.ReadLine();
-        int firstInt = int.Parse(firstString);
-        Console.WriteLine("Enter second number");
-        string secondString = Console.ReadLine();
-        int secondInt = int.Parse(secondString);
-        unchecked
+namespace week2
+{
+    public class MathOperations(int integerOne, int integerTwo)
+    {
+        public int IntegerOne { get; } = integerOne;
+        public int IntegerTwo { get; } = integerTwo;
+        public int result;
+
+        public void CalculateProductWithOverflow()
         {
-        int result = firstInt + secondInt;
-        if (result<0) {
-            Console.WriteLine($"Unchecked result: {result.ToString()} (Overflow occurred)");
-        } else {
-        Console.WriteLine($"Unchecked result: {result.ToString()}");
-        }
-        }
-        checked
-        {
-        int result = firstInt + secondInt;
-        Console.WriteLine($"Checked result: {result.ToString()}");
-        }
-        isValid = true;
-        } catch (OverflowException) {
-            Console.WriteLine($"Overflow occurred");
-        }
+            bool isValid = false;
+            while (!isValid)
+            {
+                try
+                {
+                    unchecked
+                    {
+                        var result = (int a, int b) => a + b;
+                        if (result(IntegerOne, IntegerTwo) < 0)
+                        {
+                            Console.WriteLine(
+                                $"Unchecked result: {result(IntegerOne, IntegerTwo).ToString()} (Overflow occurred)"
+                            );
+                        }
+                        else
+                        {
+                            Console.WriteLine(
+                                $"Unchecked result: {result(IntegerOne, IntegerTwo).ToString()}"
+                            );
+                        }
+                    }
+                    checked
+                    {
+                        var result = (int IntegerOne, int IntegerTwo) => IntegerOne + IntegerTwo;
+                        Console.WriteLine(
+                            $"Checked result: {result(IntegerOne, IntegerTwo).ToString()}"
+                        );
+                    }
+                    isValid = true;
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine($"Overflow occurred");
+                    isValid = true;
+                }
+            }
         }
     }
-}   
-    
 }

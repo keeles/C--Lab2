@@ -12,3 +12,4 @@ C:\Users\kylee\OneDrive\Documents\BCIT\CS\Lab2\obj\Debug\net8.0\refint\Lab2.dll
 C:\Users\kylee\OneDrive\Documents\BCIT\CS\Lab2\obj\Debug\net8.0\Lab2.pdb
 C:\Users\kylee\OneDrive\Documents\BCIT\CS\Lab2\obj\Debug\net8.0\Lab2.genruntimeconfig.cache
 C:\Users\kylee\OneDrive\Documents\BCIT\CS\Lab2\obj\Debug\net8.0\ref\Lab2.dll
+C:\Users\kylee\OneDrive\Documents\BCIT\CS\Lab2\obj\Debug\net8.0\Lab2.sourcelink.json

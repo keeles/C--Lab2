@@ -1,10 +1,10 @@
 namespace week2
 {
-    public class ListOperations
+    public class ListOperations(List<int> list) : ListBaseOperations(list)
     {
-        List<int> myList = new List<int> { 1, 3, 5, 7, 9 };
+        List<int> myList = list;
 
-        public void InsertItems()
+        public override void InsertItems()
         {
             string status = "Not Done";
             while (status != "Done")
@@ -19,8 +19,8 @@ namespace week2
                         status = "Done";
                         return;
                     }
-                    int userInput = Int32.Parse(input);
-                    myList.Add(userInput);
+                    var userInput = (string input) => Int32.Parse(input);
+                    myList.Add(userInput(input));
                     DisplayList();
                 }
                 catch (FormatException)
@@ -30,7 +30,7 @@ namespace week2
             }
         }
 
-        public void DeleteItems()
+        public override void DeleteItems()
         {
             string status = "Not Done";
             while (status != "Done")
@@ -65,7 +65,7 @@ namespace week2
             }
         }
 
-        public void SearchItem()
+        public override void SearchItem()
         {
             string status = "Not Done";
             while (status != "Done")
@@ -81,12 +81,13 @@ namespace week2
                         return;
                     }
                     int userInput = Int32.Parse(input);
-                    int indexOf = myList.IndexOf(userInput);
-                    bool isIndex = myList.IndexOf(userInput) != -1;
-                    if (isIndex)
+                    var indexOf = (int input) => myList.IndexOf(input);
+                    int index = indexOf(userInput);
+                    // bool isIndex = myList.IndexOf(userInput) != -1;
+                    if (index != -1)
                     {
                         // int indexOfInput = myList.FindIndex(userInput);
-                        Console.WriteLine($"{userInput} is at index {indexOf}");
+                        Console.WriteLine($"{userInput} is at index {indexOf(userInput)}");
                     }
                     else
                     {
@@ -100,10 +101,19 @@ namespace week2
             }
         }
 
-        private void DisplayList()
+        public override void DisplayList()
         {
             Console.WriteLine($"The current list is: ");
             Console.WriteLine($"[{string.Join(", ", myList)}]");
         }
+    }
+
+    public abstract class ListBaseOperations(List<int> list)
+    {
+        List<int> myList = list;
+        public abstract void InsertItems();
+        public abstract void SearchItem();
+        public abstract void DeleteItems();
+        public abstract void DisplayList();
     }
 }

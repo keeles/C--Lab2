@@ -1,8 +1,11 @@
 using System.Text;
 
-namespace Lab2 {
-    public class StringManipulation {
-        public void DemoStringOperations() {
+namespace Lab2
+{
+    public class StringManipulation : StringOperations
+    {
+        public override void DemoStringOperations()
+        {
             string str = "Hello";
             string newStr = " World";
             string newerStr = " from C#";
@@ -19,13 +22,20 @@ namespace Lab2 {
             Console.WriteLine(s1);
         }
 
-        public void ReverseWordsInString() {
+        public override void ReverseWordsInString()
+        {
             Console.WriteLine("Give me a sentence and I will reverse it:");
             string sentence = Console.ReadLine();
 
             List<string> myList = new List<string>(sentence.Split(" ").Reverse());
-            string result = String.Join(" ", myList.ToArray());
-            Console.WriteLine(result);
+            string reverseSentence(string input) => string.Join(" ", input.Split(" ").Reverse());
+            Console.WriteLine(reverseSentence(sentence));
         }
+    }
+
+    public abstract class StringOperations
+    {
+        public abstract void ReverseWordsInString();
+        public abstract void DemoStringOperations();
     }
 }
